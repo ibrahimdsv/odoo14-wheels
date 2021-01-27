@@ -1,0 +1,151 @@
+#clone odoo 14 repo
+git clone https://github.com/odoo/odoo.git odoo14_community -b 14.0
+
+#or download
+https://nightly.odoo.com/14.0/nightly/
+
+#https://linuxize.com/post/how-to-install-python-3-9-on-ubuntu-20-04/
+#install python3
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+
+
+#install virtualenv
+sudo apt-get install python3-pip
+sudo pip3 install virtualenv 
+
+#create new virtual environnemnt
+#https://gist.github.com/Geoyi/d9fab4f609e9f75941946be45000632b
+which python3.6
+
+virtualenv -p /usr/bin/python3.6 python3.6env
+
+#activate virtualenv
+source bin/activate
+
+#install odoo 14 requirements
+#system requirements
+sudo apt install python3-dev libxml2-dev libxslt1-dev libldap2-dev libsasl2-dev \
+    libtiff5-dev libjpeg8-dev libopenjp2-7-dev zlib1g-dev libfreetype6-dev \
+    liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev libxcb1-dev libpq-dev
+
+#odoo 
+source bin/activate
+cd /sources_path
+$ pip3 install setuptools wheel
+$ pip3 install -r requirements.txt
+
+#for requirements installation you can use 
+#this repository https://github.com/ibrahimdsv/odoo14-wheels
+#download with 
+git clone https://github.com/ibrahimdsv/odoo14-wheels
+
+#or download like zip file
+#go to folder wheels_your_system
+cd wheels_linux
+
+#install requirements from whl files
+pip3 install --no-index --find-links . -r requirements.txt
+
+#install postgresql 10 or later
+#https://www.liquidweb.com/kb/install-and-connect-to-postgresql-10-on-ubuntu-16-04/
+
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -sc)-pgdg main" > /etc/apt/sources.list.d/PostgreSQL.list'
+sudo apt-get -y update
+apt-get install postgresql-10
+
+#change postgres port in /etc/postgresql/10/main/postgresql.conf
+restart command :
+sudo pg_ctlcluster 10 main restart
+
+#create user 
+sudo -u postgres bash
+psql -p port
+exec sql : create user odoo with password 'your Password' createdb;
+
+#or 
+
+sudo -u postgres createuser -s $USER
+createdb $USER
+
+#install wkhtmltopdf
+https://wkhtmltopdf.org/downloads.html
+
+#install nodejs
+sudo npm install -g rtlcss
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+####################################################################
+windows installation
+
+#download postgresql
+#install postgresql version >= 10
+#create user with createdb privélége
+
+
+#download and install visual studio build tools
+in compilation if there is a error message read the message ?
+
+
+#download python3.9
+https://www.python.org/ftp/python/3.8.7/python-3.8.7-amd64.exe
+
+install python3.9 
+
+#install wheel and setuptools
+pip3 install setuptools wheel
+
+#install virtualenv
+pip install virtualenv
+
+#add virtualenv path to system path
+
+#create a virtual env
+virtualenv -p PATH_PYTHON_EXECUTABLE python3.9env
+
+example: 
+virtualenv -p "C:\Program Files\Python39\python.exe" python3.9dupenv
+
+
+#activate the virtualenv
+envpath/Scripts/activate
+
+example:
+ python3.9dupenv/Scripts/activate
+
+#install build packages
+ pip3 install setuptools wheel
+
+#install requirements
+pip3 install -r requirements
+
+#with  binarys
+pip install --no-index --find-links /path_of_wheels -r requirements.txt
+
+#usefull command
+#if there is a problème in requirement module installation 
+#you can download single module sources from github (most updated)
+#and compile with this command
+python setup.py bdist_wheel -d DIR
+
+
+#after creation of .whl binary you can install with pip
+pip install module_39_.whl
+
+#install wkhtmltopdf
+https://wkhtmltopdf.org/downloads.html
+
+#download and install nodejs
+npm install -g rtlcss
+
+#new odoo 14 features
+https://www.cybrosys.com/blog/expected-features-of-odoo-14
+https://www.cybrosys.com/blog/odoo-technical-differences
+https://www.technaureus.com/odoo11-and-odoo12-community-differences/
+https://fr.slideshare.net/PlanetOdoo/comparison-between-odoo-12-and-odoo-13
+
+
